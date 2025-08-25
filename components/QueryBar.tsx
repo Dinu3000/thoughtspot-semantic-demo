@@ -2,11 +2,15 @@ import { useState } from 'react';
 import Fuse from 'fuse.js';
 import manifest from '@/lib/semantic_manifest.yaml';
 
-const fuse = new Fuse(manifest.entities.map(e => e.name), { threshold: 0.4 });
+type Entity = { name: string };
+const fuse = new Fuse<Entity>(manifest.entities, {
+  keys: ['name'],
+  threshold: 0.4,
+});
 
 export default function QueryBar({ onAsk }: { onAsk: (q: string) => void }) {
   const [q, setQ] = useState('');
-  const hints = fuse.search(q).map(r => r.item).slice(0, 3);
+  const hints = fuse.search(q).map(r => r.item.name).slice(0, 3);
 
   return (
     <div className="flex space-x-2">
