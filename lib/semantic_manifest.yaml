@@ -1,0 +1,16 @@
+entities:
+  - name: ARR
+    definition: "Annual Recurring Revenue"
+    synonyms: ["annual revenue", "run rate"]
+    allowed_grains: [month, quarter, year]
+    access_policy: "mask if region='EU'"
+
+  - name: NRR
+    definition: "Net Revenue Retention"
+    synonyms: ["net retention", "nrr"]
+    access_policy: "none"
+
+  - name: Churn_Rate
+    definition: "Percentage of ARR lost in period"
+    synonyms: ["churn", "logo churn", "attrition"]
+    access_policy: "none"
